@@ -34,7 +34,7 @@ function Vegetarian () {
         <div>
             <h2>this is the vegetarian page</h2>
             <ul>
-                {imgArr.map((item, index) => <li key={index}><button><img src={item} onClick={() =>{}}></img></button></li>)}
+                {imgArr.map((item, index) => <li key={index}><button className="imgbutton"><img src={item} onClick={() =>{}}></img></button></li>)}
             </ul>
         </div>
     )
