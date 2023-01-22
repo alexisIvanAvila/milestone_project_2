@@ -16,7 +16,10 @@ function Random () {
   if (!post) return null;
 
     return (
-        <h2>this is the Random page</h2>
+        <div>
+            <h2>this is the Random page</h2>
+            <img src={post.meals[0].strMealThumb}></img>
+        </div>
     )
 }
 

@@ -15,9 +15,28 @@ function Vegetarian () {
 
   if (!post) return null;
 
+ let mealArr = []
+ let imgArr = []
+
+ for (let i = 0; i < post.meals.length; i++){
+  Object.entries(post.meals[i]).forEach(field => {
+    if(field[1]){
+        if (field[0].startsWith('idMeal')){
+          mealArr.push(field[1])
+        } else if (field[0].startsWith('strMealThumb')){
+            imgArr.push(field[1])
+    }
+ }})
+}
+ console.log(mealArr, imgArr)
 
     return (
-        <h2>this is the vegetarian page</h2>
+        <div>
+            <h2>this is the vegetarian page</h2>
+            <ul>
+                {imgArr.map((item, index) => <li key={index}><button><img src={item} onClick={() =>{}}></img></button></li>)}
+            </ul>
+        </div>
     )
 }
 
