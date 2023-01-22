@@ -8,41 +8,27 @@ html{
   background-color: #000000;
 }
 
-
-ul {
-  list-style-type: none;
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
-
-
 h1{
   color: rgb(9, 0, 0);
   }
 
-
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-
+  ul {
+  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
 }
+
 li{
   width: 25%;
 }
 img {
   width: 300px;
   padding-bottom: 7%;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+
+  display: flex;
+  flex-wrap: wrap;
 }
