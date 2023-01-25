@@ -2,13 +2,10 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Vegetarian from './components/Vegetarian';
-import Beef from './components/Beef';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Breakfast from './components/Breakfast';
-import Seafood from './components/Seafood';
 import Random from './components/Random';
 import Food from './components/Food';
+import BaseFoodSelection from './components/BaseFoodSelection';
 
 function App() {
   return (
@@ -18,10 +15,10 @@ function App() {
           <NavBar />         
           <Routes>
             <Route exact path='/' element={<Home/>}/>
-            <Route exact path='/vegetarian' element={<Vegetarian/>}/>
-            <Route exact path='/beef' element={<Beef/>}/>
-            <Route exact path='/breakfast' element={<Breakfast/>}/>
-            <Route exact path='/seafood' element={<Seafood/>} />
+            <Route exact path='/vegetarian' element={<BaseFoodSelection foodType="Vegetarian" />}/>
+            <Route exact path='/beef' element={<BaseFoodSelection foodType="Beef" />}/>
+            <Route exact path='/breakfast' element={<BaseFoodSelection foodType="Breakfast" />}/>
+            <Route exact path='/seafood' element={<BaseFoodSelection foodType="Seafood" />}/>
             <Route exact path='/random' element={<Random/>} />
             <Route path='/food/:id' element={<Food/>} />
           </Routes>
