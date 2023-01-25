@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Breakfast from './components/Breakfast';
 import Seafood from './components/Seafood';
 import Random from './components/Random';
+import Food from './components/Food';
 
 function App() {
   return (
@@ -22,9 +23,11 @@ function App() {
             <Route exact path='/breakfast' element={<Breakfast/>}/>
             <Route exact path='/seafood' element={<Seafood/>} />
             <Route exact path='/random' element={<Random/>} />
+            <Route path='/food/:id' element={<Food/>} />
           </Routes>
           </div>
         </Router>
+        <div></div>
     </div>
   );
 }

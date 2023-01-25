@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 const baseURL = process.env.REACT_APP_BASE_URL + "Beef"
 
@@ -34,7 +35,7 @@ function Beef () {
         <div>
             <h2>this is the beef page</h2>
             <ul>
-                {imgArr.map((item, index) => <li key={index}><button className="imgbutton"><img src={item} onClick={() =>{}}></img></button></li>)}
+                {imgArr.map((item, index) => <li key={index}><Link to={'/food/' + mealArr[imgArr.indexOf(item)]} className="imgLink"><img src={item}></img></Link></li>)}
             </ul>
         </div>
     )
