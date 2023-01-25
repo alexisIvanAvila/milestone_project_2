@@ -17,8 +17,11 @@ function Random () {
 
     return (
         <div>
-            <h2>this is the Random page</h2>
+            <h2>{post.meals[0].strMeal}</h2>
             <img src={post.meals[0].strMealThumb}></img>
+            <div>
+                <p className='paragraph' style={{color: 'white', width: '75%'}}>{post.meals[0].strInstructions}</p>
+            </div>
         </div>
     )
 }

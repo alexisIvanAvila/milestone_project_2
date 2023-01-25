@@ -7,8 +7,9 @@ function NavBar () {
             <Nav
         activeKey="/home"
         onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}>
-            <Nav.Item>
-                <Link to="/" >Home</Link>
+            <Nav.Item style={{marginBottom: '25px', marginTop: '10px'}}>
+                <Link to="/" className="navBar">Home</Link>
+                <Link to="/favorites" className="navBar">Favorites</Link>
             </Nav.Item>
           </Nav>
         </div>

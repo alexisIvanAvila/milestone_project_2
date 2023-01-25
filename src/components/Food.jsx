@@ -8,7 +8,7 @@ function Food () {
     const [post, setPost] = useState(null);
 
     useEffect(() => {
-        axios.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id).then((response) => {
+        axios.get(process.env.REACT_APP_ITEM_URL + id).then((response) => {
             setPost(response.data)
             console.log(response.data)
         });
@@ -18,8 +18,11 @@ function Food () {
 
     return (
         <div>
-        <h1>Your Selected recipe is {post.meals[0].strMeal}</h1>
-        <img src={post.meals[0].strMealThumb}></img>
+        <h1>{post.meals[0].strMeal}</h1>
+        <img className="foodImg" src={post.meals[0].strMealThumb}></img>
+            <div>
+                <p className='paragraph' style={{color: 'white', width: '75%'}}>{post.meals[0].strInstructions}</p>
+            </div>
         </div>
     )
 }

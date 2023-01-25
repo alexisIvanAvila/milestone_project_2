@@ -32,10 +32,14 @@ function BaseFoodSelection (props) {
 
     return (
         <div>
-            <h2>this is the {props.foodType} page</h2>
-            <ul>
-                {imgArr.map((item, index) => <li key={index}><Link to={'/food/' + mealArr[imgArr.indexOf(item)]} className="imgLink"><img src={item}></img></Link></li>)}
-            </ul>
+            <div>
+              <h2>{props.foodType}</h2>
+            </div>
+            <div className="apiImg">
+              <ul>
+                  {imgArr.map((item, index) => <li key={index}><Link to={'/food/' + mealArr[imgArr.indexOf(item)]} className="imgLink"><img className="imgbutton" src={item}></img></Link></li>)}
+              </ul>
+            </div>
         </div>
     )
 }

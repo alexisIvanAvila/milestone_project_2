@@ -1,15 +1,54 @@
+.title, p, h1, h2, h3, .homebttns, .navBar {
+  font-family: 'Asp-font-old';
+  font-style: normal;
+  font-weight: 300;
+  src: url('chrome-extension://mbckjcfnjmoiinpgddefodcighgikkgn/common/ui/fonts/open-sans/open-sans-v15-latin_latin-ext-300.eot');
+}
+
 .App {
   /* background-color: black; */
   text-align: center;
-  background-color: #f0f0f0;
+  background-color: black;
+}
+
+.homebttns {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.homebttn {
+  background-color: black !important;
+  border: black !important;
+  color:  white !important;
+  margin-left: 2% !important;
+  font-size: 20px !important;
+}
+
+.homebttn:hover {
+  background-color: #985829 !important;
+}
+
+.navBar{
+  background-color:black !important;
+  margin-left: 15% !important;
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  padding: 5px 5px 5px 5px !important;
+  border-radius: 2px !important;
+  font-size: 20px !important;
+}
+
+.navBar:hover {
+  background-color: #985829 !important;
 }
 
 html{
   background-color: #000000;
 }
 
-h1{
-  color: rgb(9, 0, 0);
+h1, h2, h3{
+  color: white;
   }
 
   ul {
@@ -38,8 +77,25 @@ img {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+  margin-top: 7%;
 }
 
-img:hover{
-  width: 325px;
+.imgbutton:hover{
+  width: 275px;
+}
+
+.apiImg {
+  margin-top: 5%;
+}
+
+.paragraph {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17.5px;
+}
+
+.foodImg {
+  margin-top: 3%;
 }
