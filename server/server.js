@@ -75,7 +75,7 @@ app.post('/api/favorites', async (req, res) => {
     let result = await client.query(query);
     result = result.rows
     console.log(result)
-    let query2 = `INSERT INTO favorites (token, id) values('${token}', ${result[0]['id']})`;
+    let query2 = `INSERT INTO favorites (token, id, category) values('${token}', ${result[0]['id']}, ${category})`;
     let result2 = await client.query(query2);
     return res.status(200).json(result)
 })

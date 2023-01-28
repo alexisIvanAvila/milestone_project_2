@@ -6,7 +6,10 @@ const baseURL = process.env.REACT_APP_RANDOM_URL
 
 function Random (props) {
     const [post, setPost] = useState(null);
-    const [favorited, setFavorited] = useState('')
+    const [favorited, setFavorited] = useState(() => {})
+    let [text, setText] = useState();
+    let [flag, setFlag] = useState(false);
+    let [color, setColor] = useState("primary")
 
     // function addFav () {
     //   axios.post(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${post.meals[0].idMeal}&category=${post.meals[0].strCategory}`)
@@ -17,19 +20,30 @@ function Random (props) {
       setPost(response.data)
       console.log(response.data)
       axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`).then((included) =>{
-        console.log(included)
-        if (included.data.rows.includes(response.data.meals[0].idMeal)){
-          function deleteFav () {
-            axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
+        function changeFave() {
+            if (flag) {
+              axios.post(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
+            setText('Delete From Favorites')
+            setColor('danger')
+            setFlag(false)
+            } else {
+              axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
+            setText('Add To Favorites')
+            setColor('primary')
+            setFlag(true)
           }
-          setFavorited(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
-        } else {
-          function addFav () {
-            axios.post(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
-          }
-          setFavorited(<Button variant="primary" onClick={addFav} >Add To Favorites</Button>)
         }
-      })
+        setFavorited(changeFave)
+        if (included.data.rows.includes(toString(response.data.meals[0].idMeal))){
+          setText('Add To Favorites')
+          setColor('primary')
+          setFlag(true)
+        } else {
+          setText('Delete From Favorites')
+          setColor('danger')
+          setFlag(false)
+        }
+    })
     });
   }, []);
 
@@ -43,7 +57,7 @@ function Random (props) {
                 <p className='paragraph' style={{color: 'white', width: '75%'}}>{post.meals[0].strInstructions}</p>
             </div>
             <div>
-            {favorited}
+            <Button variant={color} onClick={favorited} >{text}</Button>
             </div>
         </div>
     )
