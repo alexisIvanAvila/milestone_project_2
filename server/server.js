@@ -62,7 +62,7 @@ app.get('/api', (req, res) => {
 
 app.get('/api/favorites', async (req, res) => { 
     let token = req.query.token;
-    let query = "SELECT * FROM favorites WHERE token=" + token;
+    let query = `SELECT * FROM favorites WHERE token='${token}'`;
     let result = await client.query(query); 
     return res.status(200).json(result)
 })
@@ -71,10 +71,10 @@ app.post('/api/favorites', async (req, res) => {
     let token = req.query.token;
     let apiId = req.query.apiId;
     let category = req.query.category;
-    let query = `INSERT INTO ${category} (apiid) values(${apiId})`
+    let query = `INSERT INTO ${category} (apiid) values('${apiId}')`
     let result = await client.query(query);
     console.log(result)
-    let query2 = `INSERT INTO favorites (token, id) values(${token}, ${result[0]})`;
+    let query2 = `INSERT INTO favorites (token, id) values('${token}', ${result[0]})`;
     let result2 = await client.query(query2);
     return res.status(200).json(result)
 })
@@ -83,7 +83,9 @@ app.delete('/api/favorites', async (req, res) => {
     let token = req.query.token;
     let apiId = req.query.apiId;
     let category = req.query.category;
-    // let query = 
+    let query = `SELECT id FROM ${category} WHERE apiid='${apiId}'`
+    let result = await client.query(query)
+    let query2 = `DELETE FROM favorites WHERE token='${token}' and id`
     return res.status(200).json("you have removed from DB")
 })
 
