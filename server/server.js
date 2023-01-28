@@ -62,7 +62,7 @@ app.get('/api', (req, res) => {
 
 app.get('/api/favorites', async (req, res) => { 
     let token = req.query.token;
-    let query = "SELECT * FROM favorites WHERE id=" + token;
+    let query = "SELECT * FROM favorites WHERE token=" + token;
     let result = await client.query(query); 
     return res.status(200).json(result)
 })
