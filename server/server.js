@@ -91,15 +91,17 @@ app.delete('/api/favorites', async (req, res) => {
     // if (result.length === 0) {
     //     return res.status(200)
     // }
+    result = result.map((res) => res['id'])
     // let query2 = `SELECT * FROM favorites WHERE token='${token}' and id=` + result.join(' or id=')
     // let result2 = await client.query(query2)
     // result2 = result2.rows
     // if (result2.length === 0) {
     //     return res.status(200)
     // }
-    // let query3 = `DELETE FROM favorites WHERE token='${token}' and id=` + result2[0][1]
+    result2 = result2.map((res) => res['id'])
+    // let query3 = `DELETE FROM favorites WHERE token='${token}' and id=` + result2[0]
     // let result3 = await client.query(query3)
-    // let query4 = `DELETE FROM ${category} WHERE id=` + result2[0][1]
+    // let query4 = `DELETE FROM ${category} WHERE id=` + result2[0]
     // let result4 = await client.query(query4)
     // return res.status(200)
 })
