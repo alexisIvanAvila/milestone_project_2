@@ -71,7 +71,7 @@ app.post('/api/favorites', async (req, res) => {
     let token = req.query.token;
     let apiId = req.query.apiId;
     let category = req.query.category;
-    let query = `INSERT INTO ${category} (apiid) values('${apiId}') SELECT SCOPE_IDENTITY()`
+    let query = `INSERT INTO ${category} (apiid) values('${apiId}') RETURNING id`
     let result = await client.query(query);
     result = result.rows
     console.log(result)
