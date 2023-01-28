@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import { useEffect, useState } from "react";
 
-function Food () {
+function Food (props) {
     let {id} = useParams()
     
     const [post, setPost] = useState(null);
