@@ -18,8 +18,11 @@ function Random (props) {
       console.log(response.data)
       axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`).then((included) =>{
         console.log(included)
-        if (included.data.includes(response.data.meals[0].idMeal)){
-          setFavorited(<p>This is in your Favorites!</p>)
+        if (included.data.rows.includes(response.data.meals[0].idMeal)){
+          function deleteFav () {
+            axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
+          }
+          setFavorited(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
         } else {
           function addFav () {
             axios.post(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
