@@ -13,6 +13,6 @@
     "heroku-postbuild": "npm run install-server && npm run install-client && npm run build",
     "server": "node server/server.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    "start": "npm run server"
   }
 }
