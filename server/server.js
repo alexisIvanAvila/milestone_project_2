@@ -75,11 +75,15 @@ app.post('/api/favorites', async (req, res) => {
     let result = await client.query(query);
     console.log(result)
     let query2 = `INSERT INTO favorites (token, id) values(${token}, ${result[0]})`;
-    let result2 = await client.query(query);
+    let result2 = await client.query(query2);
     return res.status(200).json(result)
 })
 
 app.delete('/api/favorites', async (req, res) => {
+    let token = req.query.token;
+    let apiId = req.query.apiId;
+    let category = req.query.category;
+    // let query = 
     return res.status(200).json("you have removed from DB")
 })
 
