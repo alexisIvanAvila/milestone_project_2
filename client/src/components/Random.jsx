@@ -17,6 +17,7 @@ function Random (props) {
       setPost(response.data)
       console.log(response.data)
       axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`).then((included) =>{
+        console.log(included)
         if (included.data.includes(response.data.meals[0].idMeal)){
           setFavorited(<p>This is in your Favorites!</p>)
         } else {
