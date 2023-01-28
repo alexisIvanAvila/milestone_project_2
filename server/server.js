@@ -75,8 +75,8 @@ app.post('/api/favorites', async (req, res) => {
     let result = await client.query(query);
     result = result.rows
     console.log(result)
-    // let query2 = `INSERT INTO favorites (token, id) values('${token}', ${result[0][0]})`;
-    // let result2 = await client.query(query2);
+    let query2 = `INSERT INTO favorites (token, id) values('${token}', ${result[0]['id']})`;
+    let result2 = await client.query(query2);
     return res.status(200).json(result)
 })
 
@@ -87,20 +87,21 @@ app.delete('/api/favorites', async (req, res) => {
     let query = `SELECT id FROM ${category} WHERE apiid='${apiId}'`
     let result = await client.query(query)
     result = result.rows
-    if (result.length === 0) {
-        return res.status(200)
-    }
-    let query2 = `SELECT * FROM favorites WHERE token='${token}' and id=` + result.join(' or id=')
-    let result2 = await client.query(query2)
-    result2 = result2.rows
-    if (result2.length === 0) {
-        return res.status(200)
-    }
-    let query3 = `DELETE FROM favorites WHERE token='${token}' and id=` + result2[0][1]
-    let result3 = await client.query(query3)
-    let query4 = `DELETE FROM ${category} WHERE id=` + result2[0][1]
-    let result4 = await client.query(query4)
-    return res.status(200)
+    return res.status(200).json(result)
+    // if (result.length === 0) {
+    //     return res.status(200)
+    // }
+    // let query2 = `SELECT * FROM favorites WHERE token='${token}' and id=` + result.join(' or id=')
+    // let result2 = await client.query(query2)
+    // result2 = result2.rows
+    // if (result2.length === 0) {
+    //     return res.status(200)
+    // }
+    // let query3 = `DELETE FROM favorites WHERE token='${token}' and id=` + result2[0][1]
+    // let result3 = await client.query(query3)
+    // let query4 = `DELETE FROM ${category} WHERE id=` + result2[0][1]
+    // let result4 = await client.query(query4)
+    // return res.status(200)
 })
 
 // LISTEN
