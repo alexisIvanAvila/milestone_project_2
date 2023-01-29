@@ -14,8 +14,23 @@ function Favorites (props) {
 
    
 
-    useEffect(() => {
-      let retrievedObject = localStorage.getItem('tokenString');
+    // useEffect(() => {
+    //   let retrievedObject = localStorage.getItem('tokenString');
+    //   console.log(retrievedObject)
+    //   if(retrievedObject === null){
+    //   let tokenGen = Math.floor(Math.random() * 10001);
+    //   let tokenString = tokenGen.toString()
+    //   console.log(tokenString)
+    //   localStorage.setItem('tokenString', tokenString)
+    //   setToken(tokenString)
+    //   } else {
+    //     setToken(retrievedObject)
+    //   }
+    // }, [])
+
+  useEffect(() => {
+
+    let retrievedObject = localStorage.getItem('tokenString');
       console.log(retrievedObject)
       if(retrievedObject === null){
       let tokenGen = Math.floor(Math.random() * 10001);
@@ -26,9 +41,7 @@ function Favorites (props) {
       } else {
         setToken(retrievedObject)
       }
-    }, [])
 
-  useEffect(() => {
     async function fetchData () {
     let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`)
        let imgs = []
@@ -57,6 +70,11 @@ function Favorites (props) {
 
   function deleteFav (id) {
     axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${id}`)
+
+    const updateFavs = mealArr.filter (item => item !== id)
+
+    setMealArr(updateFavs)
+
 }
 
     return (
