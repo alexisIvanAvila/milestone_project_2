@@ -25,30 +25,30 @@ client.connect();
 app.get('/random', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });
-app.get('/breakfast', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-  app.get('/beef', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-  app.get('/chicken', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-  app.get('/vegetarian', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-  app.get('/pork', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-  app.get('/seafood', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-  app.get('/dessert', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
-  app.get('/side', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-  });
+// app.get('/breakfast', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
+//   app.get('/beef', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
+//   app.get('/chicken', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
+//   app.get('/vegetarian', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
+//   app.get('/pork', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
+//   app.get('/seafood', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
+//   app.get('/dessert', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
+//   app.get('/side', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
   app.get('/favorites', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });
@@ -77,6 +77,7 @@ app.post('/api/favorites', async (req, res) => {
     console.log(result)
     let query2 = `INSERT INTO favorites (token, id, category) values('${token}', ${result[0]['id']}, category)`;
     let result2 = await client.query(query2);
+    console.log(result2)
     return res.status(200).json(result)
 })
 
