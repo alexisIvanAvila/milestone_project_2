@@ -1,9 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 function Favorites (props) {
-    const [post, setPost] = useState(null);
     const [img, setImg] = useState([]);
     const [mealArr, setMealArr] = useState([]);
     const [deleter, setDeleter] = useState([]);
@@ -25,13 +25,12 @@ function Favorites (props) {
         function deleteFav () {
             axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
       }
+      setDeleter(<Button variant="danger" onClick={{deleteFav}} >Delete From Favorites</Button>)
     }
        setImg(imgs)
        setMealArr(mealId)
        console.log(imgs)
        console.log(mealId)
-      
-       setDeleter(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
 
  } fetchData()
   }, []);
