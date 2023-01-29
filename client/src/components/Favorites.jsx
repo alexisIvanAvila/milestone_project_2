@@ -21,16 +21,17 @@ function Favorites (props) {
         let results = await axios.get(baseURL + included[i]['apiid'])
         imgs.push(results.data.meals[0].strMealThumb)
         mealId.push(results.data.meals[0].idMeal)
-       }
+        
+        function deleteFav () {
+            axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
+      }
+    }
        setImg(imgs)
        setMealArr(mealId)
        console.log(imgs)
        console.log(mealId)
-
-       function deleteFav () {
-        axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
-      }
-      setDeleter(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
+      
+       setDeleter(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
 
  } fetchData()
   }, []);
