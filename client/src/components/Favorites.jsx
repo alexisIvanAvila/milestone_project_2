@@ -66,7 +66,7 @@ function Favorites (props) {
        console.log(mealId)
 
  } fetchData()
-  }, []);
+  }, [mealArr]);
 
   function deleteFav (id) {
     axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${id}`)
