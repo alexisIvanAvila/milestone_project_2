@@ -9,11 +9,19 @@ function Random (props) {
     const [favorited, setFavorited] = useState('')
     const [deleted, setDeleted] = useState('')
 
-    // function addFav () {
-    //   axios.post(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${post.meals[0].idMeal}&category=${post.meals[0].strCategory}`)
-    // }
-
   useEffect(() => {
+    let retrievedObject = localStorage.getItem('tokenString');
+    console.log(retrievedObject)
+    if(retrievedObject === null){
+    let tokenGen = Math.floor(Math.random() * 10001);
+    let tokenString = tokenGen.toString()
+    console.log(tokenString)
+    localStorage.setItem('tokenString', tokenString)
+    setToken(tokenString)
+    } else {
+      setToken(retrievedObject)
+    }
+    
     axios.get(baseURL).then((response) => {
       setPost(response.data)
       console.log(response.data)
