@@ -25,31 +25,8 @@ client.connect();
 app.get('/random', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });
-// app.get('/breakfast', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-//   });
-//   app.get('/beef', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-//   });
-//   app.get('/chicken', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-//   });
-//   app.get('/vegetarian', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-//   });
-//   app.get('/pork', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-//   });
-//   app.get('/seafood', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-//   });
-//   app.get('/dessert', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-//   });
-//   app.get('/side', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
-//   });
-  app.get('/favorites', (req, res) => {
+
+app.get('/favorites', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
   });
 
@@ -70,22 +47,17 @@ app.get('/api/favorites', async (req, res) => {
 app.post('/api/favorites', async (req, res) => {
     let token = req.query.token;
     let apiId = req.query.apiId;
-    // let category = req.query.category;
     let query = `INSERT INTO favorites (apiid, token) values('${apiId}', ${token})`
     let result = await client.query(query);
     result = result.rows
     console.log(result)
-    // let query2 = `INSERT INTO favorites (token, id, category) values('${token}', ${result[0]['id']}, category)`;
-    // let result2 = await client.query(query2);
-    // console.log(result2)
     return res.status(200).json(result)
 })
 
 app.delete('/api/favorites', async (req, res) => {
     let token = req.query.token;
     let apiId = req.query.apiId;
-    let category = req.query.category;
-    let query = `SELECT id FROM ${category} WHERE apiid='${apiId}'`
+    let query = `DELETE FROM favorites WHERE token='${token}' AND apiid='${apiId}'`
     let result = await client.query(query)
     result = result.rows
     return res.status(200).json(result)
