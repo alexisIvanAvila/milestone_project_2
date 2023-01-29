@@ -7,12 +7,30 @@ function Favorites (props) {
     const [img, setImg] = useState([]);
     const [mealArr, setMealArr] = useState([]);
     const [deleter, setDeleter] = useState([]);
-
+    let [token, setToken] = useState('')
+   
+   
     const baseURL = process.env.REACT_APP_ITEM_URL
+
+   
+
+    useEffect(() => {
+      let retrievedObject = localStorage.getItem('tokenString');
+      console.log(retrievedObject)
+      if(retrievedObject === null){
+      let tokenGen = Math.floor(Math.random() * 10001);
+      let tokenString = tokenGen.toString()
+      console.log(tokenString)
+      localStorage.setItem('tokenString', tokenString)
+      setToken(tokenString)
+      } else {
+        setToken(retrievedObject)
+      }
+    }, [])
 
   useEffect(() => {
     async function fetchData () {
-    let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`)
+    let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${token}`)
        let imgs = [] 
        console.log(included)
        included = included.data.rows
@@ -23,9 +41,9 @@ function Favorites (props) {
         mealId.push(results.data.meals[0].idMeal)
         
         function deleteFav () {
-            axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
+            axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${token}&apiId=${results.data.meals[0].idMeal}`)
       }
-      deleter.push(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
+      deleter.push(<Button variant="danger" onClick={() => {deleteFav && window.location.reload(false)}} >Delete From Favorites</Button>)
       setDeleter(deleter)
     }
        setImg(imgs)
