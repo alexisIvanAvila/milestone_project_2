@@ -109,7 +109,7 @@ function Favorites (props) {
             <div className="apiImg">
               <ul>
                   {img.map((item, index) => <li key={index}><Link to={'/food/' + mealArr[img.indexOf(item)]} className="imgLink"><img className="imgbutton" src={item}></img></Link>
-                  <Button onClick={() => deleteFav(mealArr[img.indexOf(item)])} />
+                  <Button variant="danger" onClick={() => deleteFav(mealArr[img.indexOf(item)])}>Delete</Button>
                   </li>)}
               </ul>
             </div>
