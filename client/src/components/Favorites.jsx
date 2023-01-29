@@ -12,6 +12,7 @@ function Favorites (props) {
     async function fetchData () {
     let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`)
        let imgs = [] 
+       console.log(included)
        let mealId = []
        for (let i = 0; i < included.length; i++) {
         let results = await axios.get(baseURL + included[i])
@@ -20,6 +21,8 @@ function Favorites (props) {
        }
        setImg(imgs)
        setMealArr(mealId)
+       console.log(imgs)
+       console.log(mealId)
  } fetchData()
   }, []);
 
