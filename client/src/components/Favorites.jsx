@@ -13,9 +13,10 @@ function Favorites (props) {
     let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`)
        let imgs = [] 
        console.log(included)
+       included = included.rows
        let mealId = []
        for (let i = 0; i < included.length; i++) {
-        let results = await axios.get(baseURL + included[i])
+        let results = await axios.get(baseURL + included[i]['apiid'])
         imgs.push(results.data.meals[0].strMealThumb)
         mealId.push(results.data.meals[0].idMeal)
        }
