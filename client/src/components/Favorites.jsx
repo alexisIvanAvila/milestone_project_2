@@ -28,7 +28,7 @@ function Favorites (props) {
        console.log(mealId)
 
        function deleteFav () {
-        axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
+        axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
       }
       setDeleter(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
 
