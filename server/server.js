@@ -51,7 +51,7 @@ app.post('/api/favorites', async (req, res) => {
     let result = await client.query(query);
     result = result.rows
     console.log(result)
-    return res.status(200).json(result)
+    return res.status(200)
 })
 
 app.delete('/api/favorites', async (req, res) => {
