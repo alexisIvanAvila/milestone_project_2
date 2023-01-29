@@ -28,6 +28,31 @@ function Favorites (props) {
     //   }
     // }, [])
 
+    async function fetchData () {
+        let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`)
+           let imgs = []
+           let mealId = []
+           console.log(included)
+           included = included.data.rows
+           
+           for (let i = 0; i < included.length; i++) {
+            let results = await axios.get(baseURL + included[i]['apiid'])
+            imgs.push(results.data.meals[0].strMealThumb)
+            mealId.push(results.data.meals[0].idMeal)
+            
+        //     function deleteFav () {
+        //         axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
+        //   }
+        //   deleter.push(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
+        //   setDeleter(deleter)
+        }
+           setImg(imgs)
+           setMealArr(mealId)
+           console.log(imgs)
+           console.log(mealId)
+    
+     }
+
   useEffect(() => {
 
     let retrievedObject = localStorage.getItem('tokenString');
@@ -42,38 +67,37 @@ function Favorites (props) {
         setToken(retrievedObject)
       }
 
-    async function fetchData () {
-    let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`)
-       let imgs = []
-       let mealId = []
-       console.log(included)
-       included = included.data.rows
+//     async function fetchData () {
+//     let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`)
+//        let imgs = []
+//        let mealId = []
+//        console.log(included)
+//        included = included.data.rows
        
-       for (let i = 0; i < included.length; i++) {
-        let results = await axios.get(baseURL + included[i]['apiid'])
-        imgs.push(results.data.meals[0].strMealThumb)
-        mealId.push(results.data.meals[0].idMeal)
+//        for (let i = 0; i < included.length; i++) {
+//         let results = await axios.get(baseURL + included[i]['apiid'])
+//         imgs.push(results.data.meals[0].strMealThumb)
+//         mealId.push(results.data.meals[0].idMeal)
         
-    //     function deleteFav () {
-    //         axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
-    //   }
-    //   deleter.push(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
-    //   setDeleter(deleter)
-    }
-       setImg(imgs)
-       setMealArr(mealId)
-       console.log(imgs)
-       console.log(mealId)
+//     //     function deleteFav () {
+//     //         axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
+//     //   }
+//     //   deleter.push(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
+//     //   setDeleter(deleter)
+//     }
+//        setImg(imgs)
+//        setMealArr(mealId)
+//        console.log(imgs)
+//        console.log(mealId)
 
- } fetchData()
-  }, [mealArr]);
+//  } 
+    fetchData()
+  }, []);
 
   function deleteFav (id) {
     axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${id}`)
 
-    const updateFavs = mealArr.filter (item => item !== id)
-
-    setMealArr(updateFavs)
+    fetchData();
 
 }
 
