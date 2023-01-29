@@ -8,6 +8,7 @@ function Random (props) {
     const [post, setPost] = useState(null);
     const [favorited, setFavorited] = useState('')
     const [deleted, setDeleted] = useState('')
+    let [token, setToken] = useState('')
 
   useEffect(() => {
     let retrievedObject = localStorage.getItem('tokenString');
