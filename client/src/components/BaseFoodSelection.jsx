@@ -16,7 +16,7 @@ function BaseFoodSelection (props) {
   if (!post) return null;
 
   let mealArr = []
- let imgArr = []
+  let imgArr = []
 
  for (let i = 0; i < post.meals.length; i++){
   Object.entries(post.meals[i]).forEach(field => {

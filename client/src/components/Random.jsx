@@ -26,8 +26,11 @@ function Random (props) {
     axios.get(baseURL).then((response) => {
       setPost(response.data)
       console.log(response.data)
+      
       axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`).then((included) =>{
+        
         if (included.data.rows.includes(toString(response.data.meals[0].idMeal))){
+          
           function deleteFav () {
             axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
           }
