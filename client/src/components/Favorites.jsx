@@ -25,7 +25,8 @@ function Favorites (props) {
         function deleteFav () {
             axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
       }
-      setDeleter(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
+      deleter.push(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
+      setDeleter(deleter)
     }
        setImg(imgs)
        setMealArr(mealId)
@@ -42,7 +43,7 @@ function Favorites (props) {
             </div>
             <div className="apiImg">
               <ul>
-                  {img.map((item, index) => <li key={index}><Link to={'/food/' + mealArr[img.indexOf(item)]} className="imgLink"><img className="imgbutton" src={item}></img></Link>{deleter}</li>)}
+                  {img.map((item, index) => <li key={index}><Link to={'/food/' + mealArr[img.indexOf(item)]} className="imgLink"><img className="imgbutton" src={item}></img></Link>{deleter[index]}</li>)}
               </ul>
             </div>
         </div>
