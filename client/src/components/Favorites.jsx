@@ -30,7 +30,7 @@ function Favorites (props) {
 
   useEffect(() => {
     async function fetchData () {
-    let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${token}`)
+    let included = await axios.get(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}`)
        let imgs = [] 
        console.log(included)
        included = included.data.rows
@@ -44,7 +44,7 @@ function Favorites (props) {
             window.location.reload(false)
         }
         function deleteFav () {
-            axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${token}&apiId=${results.data.meals[0].idMeal}`)
+            axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${results.data.meals[0].idMeal}`)
       }
       deleter.push(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
       setDeleter(deleter)
