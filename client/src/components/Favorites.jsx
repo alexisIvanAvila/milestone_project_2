@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 function Favorites (props) {
     const [post, setPost] = useState(null);
-    const [img, setImg] = useState([])
-    const [mealArr, setMealArr] = useState([])
+    const [img, setImg] = useState([]);
+    const [mealArr, setMealArr] = useState([]);
+    const [deleter, setDeleter] = useState([]);
+
     const baseURL = process.env.REACT_APP_ITEM_URL
 
   useEffect(() => {
@@ -24,6 +26,12 @@ function Favorites (props) {
        setMealArr(mealId)
        console.log(imgs)
        console.log(mealId)
+
+       function deleteFav () {
+        axios.delete(process.env.REACT_APP_SERVER_URL + `favorites?token=${props.token}&apiId=${response.data.meals[0].idMeal}&category=${response.data.meals[0].strCategory}`)
+      }
+      setDeleter(<Button variant="danger" onClick={deleteFav} >Delete From Favorites</Button>)
+
  } fetchData()
   }, []);
 
@@ -34,7 +42,7 @@ function Favorites (props) {
             </div>
             <div className="apiImg">
               <ul>
-                  {img.map((item, index) => <li key={index}><Link to={'/food/' + mealArr[img.indexOf(item)]} className="imgLink"><img className="imgbutton" src={item}></img></Link></li>)}
+                  {img.map((item, index) => <li key={index}><Link to={'/food/' + mealArr[img.indexOf(item)]} className="imgLink"><img className="imgbutton" src={item}></img>{deleter}</Link></li>)}
               </ul>
             </div>
         </div>
